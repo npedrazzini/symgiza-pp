@@ -1,5 +1,5 @@
 Makefile
-autom4te.cache
+autom4te.cache/
 config.h.in~
 .deps
 mkcls
@@ -35,3 +35,18 @@ libtool
 *.exe
 *.out
 *.app
+
+# Autotools-generated files
+config.h
+stamp-h1
+missing
+depcomp
+
+# Dependency files
+src/.deps/
+
+# Editor backups
+*~
+
+# Logs 
+*.log

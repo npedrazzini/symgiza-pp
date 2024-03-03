@@ -41,6 +41,9 @@ config.h
 stamp-h1
 missing
 depcomp
+m4/
+fixproto.py
+compile
 
 # Dependency files
 src/.deps/
@@ -50,3 +53,4 @@ src/.deps/
 
 # Logs 
 *.log
+

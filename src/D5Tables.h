@@ -199,11 +199,12 @@ friend ostream&operator<<(ostream&out,d5model&d5m) {
 	  if(is>>E>>F>>v1>>v2>>ii>>prob>>count)
 	    {
 	      //cerr << "Read: " << E << " " << F << " " << v1 << " " << v2 << " " << prob<< endl;
-	      if( count>0 )
-		if( E=="-1")
-		  getCountRef_bigger(ii,0,(*fwordclasses)(F),1000,1000,v2)+=count;
-		else
-		  getCountRef_first(ii,v1,(*fwordclasses)(F),1000,1000,v2)+=count;
+	      if( count>0 ){
+          if( E=="-1")
+            getCountRef_bigger(ii,0,(*fwordclasses)(F),1000,1000,v2)+=count;
+          else
+            getCountRef_first(ii,v1,(*fwordclasses)(F),1000,1000,v2)+=count;
+          }
 	    }
 	}
       normalizeTable();

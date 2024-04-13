@@ -139,28 +139,27 @@ public:
             if( alProbPredicted.count(i->first)){
                 normalize_if_possible(i->second.begin(),i->second.end());
                 normalize_if_possible(alProbPredicted[i->first].begin(),alProbPredicted[i->first].end());
-                for(int j=i->second.low();j<=i->second.high();++j){
-                    if( i->second[j] )
-                        if(alProbPredicted[i->first][j]>0.0 )
-                        {
-                            double op=1.0;
-                            if( old && old->alProb.count(i->first) )
-                                op=(old->alProb.find(i->first)->second)[j];
-                            //cerr << "GIS: " << j << ' ' << " OLD:"
-                            //     << op << "*true:" 
-                            //     << i->second[j] << "/pred:" << alProbPredicted[i->first][j] << " -> ";
+
+                for(int j=i->second.low(); j<=i->second.high(); ++j) {
+                    if( i->second[j] ) {
+                        if( alProbPredicted[i->first][j] > 0.0 ) {  // Clear block for the inner `if`
+                            double op = 1.0;
+                            if( old && old->alProb.count(i->first) ) {
+                                op = (old->alProb.find(i->first)->second)[j];
+                            }
                             
-                            
-                            i->second[j]= op*(i->second[j]/alProbPredicted[i->first][j]);
-                            //cerr << i->second[j] << endl;
+                            i->second[j] = op * (i->second[j] / alProbPredicted[i->first][j]);
+                        } 
+                        else {  // Now, this `else` is correctly associated with `if( alProbPredicted[i->first][j] > 0.0 )`
+                            cerr << "ERROR2 in performGISiteration: " << i->second[j] << endl;
                         }
-                    else{
-                        cerr << "ERROR2 in performGISiteration: " << i->second[j] << endl;
                     }
                 }
             }
-            else
+            else {
                 cerr << "ERROR in performGISIteration: " << alProbPredicted.count(i->first) << endl;
+            }
+
         }
     }
 };

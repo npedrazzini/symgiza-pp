@@ -2,14 +2,15 @@
 
 ## Created by Anjuta
 
-INCLUDES = \
+ACLOCAL_AMFLAGS = -I m4
+
+AM_CPPFLAGS = \
 	-DPACKAGE_LOCALE_DIR=\""$(prefix)/$(DATADIRNAME)/locale"\" \
 	-DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
-	-DPACKAGE_DATA_DIR=\""$(datadir)"\" 
+	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
+	-Wno-deprecated -Wno-write-strings \
+	-g
 
-AM_CPPFLAGS =\
-	 -Wno-deprecated -Wno-write-strings \
-	 -g
 
 bin_PROGRAMS = symgiza \
 	snt2cooc\

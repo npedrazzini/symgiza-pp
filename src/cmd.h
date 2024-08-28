@@ -35,12 +35,13 @@ extern "C" {
 #if defined(__STDC__)
 int DeclareParams(char *, ...);
 #else
-int DeclareParams();
+int DeclareParams(void);
 #endif
 
-int	GetParams(int *n, char ***a,char *CmdFileName),
-	SPrintParams(),
-	PrintParams();
+int GetParams(int *n, char ***a, char *CmdFileName);
+int SPrintParams(char ***a, char *pfx);
+int PrintParams(int ValFlag, FILE *fp);
+
 
 #ifdef  __cplusplus
 }

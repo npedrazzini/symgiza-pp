@@ -128,7 +128,9 @@ Vector<map< pair<int,int>,char > > ReferenceAlignment;
 double ErrorsInAlignment(const map< pair<int,int>,char >&reference,
 		const Vector<WordIndex>&test, int l, int&missing, int&toomuch,
 		int&eventsMissing, int&eventsToomuch, int pair_no){
-		}
+    return 0.0;  //  Default return value
+}
+
 
 void printGIZAPars(ostream&out){
 }

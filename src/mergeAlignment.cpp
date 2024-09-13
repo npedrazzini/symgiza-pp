@@ -121,7 +121,7 @@ int merge_alig(const char* prefix)
 int last[number];
 for(int i=0;i<number;i++) last[i]=0;
 
-while(added<all){
+while(added<=all){
 	for(int d=0;d<number;d++)
     for(int i=last[d]; i<sent[d].size();i++){
     	if (sent[d][i] != "" ) if(strContains(sent[d][i], prefixLine)){

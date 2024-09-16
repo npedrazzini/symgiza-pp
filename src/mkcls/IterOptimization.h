@@ -63,7 +63,7 @@ class IterOptimization : public Optimization
        
 
 
-      virtual void makeGraphOutput();
+      virtual void makeGraphOutput(void);
      
 
       virtual short end()=0;
@@ -75,7 +75,7 @@ class IterOptimization : public Optimization
       virtual short accept(double delta)=0;
      
 
-      virtual void zInitialize();
+      virtual void zInitialize(void);
      
 
    public:
@@ -88,10 +88,10 @@ class IterOptimization : public Optimization
       virtual double minimize(int steps=-1);
      
 
-      inline int getCurStep();
+      inline int getCurStep(void);
      
 
-      inline double getCurrentValue(); 
+      inline double getCurrentValue(void); 
      
 
       inline const Problem& getProblem(); 

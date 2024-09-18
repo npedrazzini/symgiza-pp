@@ -99,7 +99,7 @@ class NWG
   int curTime;           
  public:
   NWG(int n);            
-  void init();           
+  void init(void);           
 
   int anzNot0;           
                          
@@ -110,7 +110,7 @@ class NWG
 
   inline void addFreq(int C,FreqType n); 
 
-  void sort();           
+  void sort(void);           
                          
   FreqType getFreq(int i)     
     {
@@ -213,13 +213,13 @@ class KategProblem : public Problem
    virtual void _undoChange(ProblemChange &c);
   
 
-   virtual double _value();
+   virtual double _value(void);
   
 
    double _valueChange(KategProblemChange &k);
   
 
-   virtual void incrementDirection();
+   virtual void incrementDirection(void);
   
 
    virtual int maxDimensionVal(void) ;
@@ -259,7 +259,7 @@ leda_array<intSet> *kats;
    virtual double nicevalue(double value=1e100);
   
 
-   void makeKats();
+   void makeKats(void);
   
 
    virtual void dumpOn(ostream &strm);
@@ -289,10 +289,10 @@ leda_array<intSet> *kats;
    inline short katwahl() ;
   
 
-   virtual int maxNonBetterIterations();
+   virtual int maxNonBetterIterations(void);
   
 
-   virtual int expectedNumberOfIterations();
+   virtual int expectedNumberOfIterations(void);
   
 
    const char *getString(int i);
@@ -302,7 +302,7 @@ leda_array<intSet> *kats;
  void makeTitle(char x[512]);
 
 
- void fixInitLike();
+ void fixInitLike(void);
 
 };
 

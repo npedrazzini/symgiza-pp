@@ -119,7 +119,7 @@ class KategProblemWBC
   short testFull(int doIt=0);
   
 
-  double get_h_of_words();
+  double get_h_of_words(void);
   
 
   void set_h_of_words(double s);

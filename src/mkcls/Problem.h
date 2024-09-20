@@ -99,7 +99,7 @@ class Problem {
    ProblemChange& change();			
   
 
-   virtual double  value();
+   virtual double  value(void);
   
 
    virtual double  valueChange(ProblemChange &c);
@@ -132,7 +132,7 @@ class Problem {
    virtual StatVar& deviationStatVar(Optimization &s,int anz);
   
 
-   virtual void incrementDirection();
+   virtual void incrementDirection(void);
   
 
   

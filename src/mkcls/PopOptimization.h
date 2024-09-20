@@ -61,7 +61,7 @@ class PopOptimization : public Optimization {
 											     int verfahren;              
                                  
 
-      virtual void zInitialize();
+      virtual void zInitialize(void);
      
 
    public:
@@ -70,10 +70,10 @@ class PopOptimization : public Optimization {
      
      virtual ~PopOptimization() {}
 
-      int size();
+      int size(void);
      
      
-      void sort();
+      void sort(void);
      
 
       virtual Problem& bestProblem()=0;

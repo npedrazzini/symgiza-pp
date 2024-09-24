@@ -43,19 +43,19 @@ class SAOptimization : public IterOptimization
      int  stepsForAbkuehlung;
 
    protected:
-      virtual void zInitialize(); 
+      virtual void zInitialize(void); 
      
 
       virtual short accept(double delta); 
      
      
-      virtual void  abkuehlen();
+      virtual void  abkuehlen(void);
      
 
       virtual short end();
      
 
-      virtual void makeGraphOutput();
+      virtual void makeGraphOutput(void);
      
 
    public:

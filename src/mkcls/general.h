@@ -47,7 +47,7 @@ USA.
 
 #define TEST_RANDOM_SEED 532567487 
 
-double zufall01();                   
+double zufall01(void);                   
                                    
 
 double zufall(double min,double max);    
@@ -70,7 +70,7 @@ void zufallSeed(int z =TEST_RANDOM_SEED);
 
 
 
-double clockSec(); 
+double clockSec(void); 
 
 extern int verboseMode;
 

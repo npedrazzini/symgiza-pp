@@ -127,7 +127,7 @@ public:
 #define forall_h(a,b,c,d) forall(c,d)
 #else
 
-double used_time();
+double used_time(void);
 #if 0
 
 #include "my_hashmap.h"

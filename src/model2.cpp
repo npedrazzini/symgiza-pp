@@ -324,11 +324,12 @@ void model2::em_loop(Perplexity& perp, sentenceHandler& sHandler1,
                         else e = PROB_SMOOTH  ;
                         e *= aTable.getValue(i,j, l, m);
                         COUNT temp = COUNT(e) * val ;
-                        if( NoEmptyWord==0 || i!=0 )
+                        if( NoEmptyWord==0 || i!=0 ){
                             if (sPtrCache[i] != 0) 
                                 (*(sPtrCache[i])).count += temp ;
                             else 	      
-                                tTable.incCount(es[i], fs[j], temp);	    
+                                tTable.incCount(es[i], fs[j], temp);
+                        }	    
                         aCountTable.addValue(i,j, l, m,temp) ; 
                     } /* end of for i */
                 } // end of if (denom > 0)

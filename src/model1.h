@@ -141,7 +141,7 @@ public:
     CTTableDiff<COUNT,PROB>* one_step_em(int it ,bool seedModel1, Dictionary& dictionary,
                     bool useDict);
     
-    void recombine();
+    void recombine(void);
     
     void combine_one(CTTableDiff<COUNT,PROB>* cb);
     

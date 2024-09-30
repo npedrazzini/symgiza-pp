@@ -58,7 +58,7 @@ class vcbList{
   inline double totalVocab() const {return total;};
   inline Vector<WordEntry>& getVocabList() { return(list);}; 
   inline const Vector<WordEntry>& getVocabList()const { return(list);}; 
-  void readVocabList();
+  void readVocabList(void);
   void incFreq(WordIndex id , double f){
     if(id < list.size()){
       if (list[id].freq == 0)

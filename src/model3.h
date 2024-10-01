@@ -104,9 +104,9 @@ public:
 	void em(int, sentenceHandler&);
 	int viterbi(int, int, int, int,const char* prev_d4 = NULL,const char* prev_d4_2=NULL,bool dumpCount = false, 
 	    const char* dumpCountName = NULL, bool useString = false);
-	int viterbi_hto3();
+	int viterbi_hto3(void);
 	d4model* viterbi_3to4();
-	int viterbi_3to3();
+	int viterbi_3to3(void);
 	int viterbi_4to4(d4model& d4m);
 	void viterbi_thread(int it, string alignfile, bool dump_files,d4model& d4m,d5model& d5m,bool final,char fromModel,char toModel,string& modelName);
 private:

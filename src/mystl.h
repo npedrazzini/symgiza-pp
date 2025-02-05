@@ -158,7 +158,7 @@ bool operator<(const tri<A,B,C>&x,const tri<A,B,C>&y)
   return 0;
 }
 
-double used_time();
+double used_time(void);
 
 template<class T>
 class my_hash

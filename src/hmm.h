@@ -102,7 +102,7 @@ public:
                  );
     void em_thread(int it,string alignfile,bool dump_files,bool resume=false);
     HMMNetwork *makeHMMNetwork(const Vector<WordIndex>& es,const Vector<WordIndex>&fs,bool doInit)const;
-	void clearCountTable();
+	void clearCountTable(void);
     friend class model3;
 };
 //int multi_thread_em(int noIter, int noThread, hmm* base);

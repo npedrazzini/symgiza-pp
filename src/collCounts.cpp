@@ -117,7 +117,7 @@ template<class TRANSPAIR> void _collectCountsOverNeighborhoodForSophisticatedMod
 	Mmsc.check();
 	const PositionIndex m=msc.get_m(), l=msc.get_l();
 	for (PositionIndex j=1; j<=m; ++j)
-		if (msc(j)!=0)
+		if (msc(j)!=0){
 			if (msc.get_head(msc(j))==j) {
 				int ep=msc.prev_cept(msc(j));
 				d4Table->augCountRef_first(j, msc.get_center(ep),
@@ -128,6 +128,7 @@ template<class TRANSPAIR> void _collectCountsOverNeighborhoodForSophisticatedMod
 				d4Table->augCountRef_bigger(j, msc.prev_in_cept(j), 0,
 						d4Table->fwordclasses->getClass(ef.get_fs(j)), l, m,normalized_ascore);
 			}
+		}
 }
 
 template<class TRANSPAIR> void _collectCountsOverNeighborhoodForSophisticatedModels(

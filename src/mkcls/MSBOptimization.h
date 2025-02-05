@@ -43,7 +43,7 @@ class MSBOptimization : public PopOptimization
      int expectedSteps;     
      short nachMinimierung; 
      
-      virtual void zInitialize();
+      virtual void zInitialize(void);
      
 
    public:

@@ -37,7 +37,7 @@ class HCOptimization : public IterOptimization
       virtual short accept(double delta); 
      
 
-      virtual void  abkuehlen();
+      virtual void  abkuehlen(void);
      
 
       virtual short end();

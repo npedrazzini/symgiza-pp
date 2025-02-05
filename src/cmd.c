@@ -8,6 +8,7 @@
 
 #include	"cmd.h"
 
+
 #ifdef WIN32
 #		define popen	_popen
 #		define pclose _pclose
@@ -29,23 +30,42 @@ char	*strdup();
 #define	LINSIZ		10240
 #define	MAXPARAM	256
 
-static char	*GetLine(),
-		**str2array();
-static int	Scan(),
-		SetParam(),
-		SetEnum(),
-		SetSubrange(),
-		SetStrArray(),
-		SetGte(),
-		SetLte(),
-		CmdError(),
-		EnumError(),
-		SubrangeError(),
-		GteError(),
-		LteError(),
-		PrintParam(),
-		PrintEnum(),
-		PrintStrArray();
+// Function Prototypes
+static char *GetLine(FILE *fp, int n, char *Line);
+static int Scan(char *ProgName, Cmd_T *cmds, char *Line);
+static int CmdError(char *opt);
+static int PrintParam(Cmd_T *cmd, int ValFlag, FILE *fp);
+static int PrintEnum(Cmd_T *cmd, int ValFlag, FILE *fp);
+static int PrintStrArray(Cmd_T *cmd, int ValFlag, FILE *fp);
+static int SetParam(Cmd_T *cmd, char *s);
+static int SetEnum(Cmd_T *cmd, char *s);
+static int SetSubrange(Cmd_T *cmd, char *s);
+static int SetGte(Cmd_T *cmd, char *s);
+static int SetLte(Cmd_T *cmd, char *s);
+static int SetStrArray(Cmd_T *cmd, char *s);
+static int EnumError(Cmd_T *cmd, char *s);
+static int GteError(Cmd_T *cmd, int n);
+static int LteError(Cmd_T *cmd, int n);
+static int SubrangeError(Cmd_T *cmd, int n);
+static char **str2array(char *s, char *sep);
+
+// static char	*GetLine(),
+// 		**str2array();
+// static int	Scan(),
+// 		SetParam(),
+// 		SetEnum(),
+// 		SetSubrange(),
+// 		SetStrArray(),
+// 		SetGte(),
+// 		SetLte(),
+// 		CmdError(),
+// 		EnumError(),
+// 		SubrangeError(),
+// 		GteError(),
+// 		LteError(),
+// 		PrintParam(),
+// 		PrintEnum(),
+// 		PrintStrArray();
 
 static Cmd_T	cmds[MAXPARAM+1];
 static char	*SepString = " \t\n";
@@ -129,10 +149,7 @@ va_dcl
 	return 0;
 }
 
-int GetParams(n, a, CmdFileName)
-int	*n;
-char	***a;
-char	*CmdFileName;
+int GetParams(int *n, char ***a, char *CmdFileName) 
 {
 	char	*Line,
 		*ProgName;
@@ -211,10 +228,7 @@ char	*CmdFileName;
 	return 0;
 }
 
-int PrintParams(ValFlag, fp)
-int	ValFlag;
-FILE	*fp;
-{
+int PrintParams(int ValFlag, FILE *fp){
 	int	i;
 
 	fflush(fp);
@@ -229,10 +243,7 @@ FILE	*fp;
 	return 0;
 }
 
-int SPrintParams(a, pfx)
-char	***a,
-	*pfx;
-{
+int SPrintParams(char ***a, char *pfx){
 	int	l,
 		n;
 	Cmd_T	*cmd;
@@ -250,20 +261,14 @@ char	***a,
 	return n;
 }
 
-static int CmdError(opt)
-char	*opt;
-{
+static int CmdError(char *opt){
 	fprintf(stderr, "Invalid option \"%s\"\n", opt);
 	fprintf(stderr, "This program expectes the following parameters:\n");
 	PrintParams(FALSE, stderr);
 	exit(0);
 }
 
-static int PrintParam(cmd, ValFlag, fp)
-Cmd_T	*cmd;
-int	ValFlag;
-FILE	*fp;
-{
+static int PrintParam(Cmd_T *cmd, int ValFlag, FILE *fp){
 	fprintf(fp, "%4s", "");
 	switch(cmd->Type) {
 	case CMDDOUBLETYPE:
@@ -308,11 +313,7 @@ FILE	*fp;
 	return 0;
 }
 
-static char *GetLine(fp, n, Line)
-FILE	*fp;
-int	n;
-char	*Line;
-{
+static char *GetLine(FILE *fp, int n, char *Line){
 	int	j,
 		l,
 		offs=0;
@@ -344,11 +345,7 @@ char	*Line;
 	return Line;
 }
 
-static int Scan(ProgName, cmds, Line)
-char	*ProgName,
-	*Line;
-Cmd_T	*cmds;
-{
+static int Scan(char *ProgName, Cmd_T *cmds, char *Line){
 	char	*q,
 		*p;
 	int	i,
@@ -383,10 +380,7 @@ Cmd_T	*cmds;
 	return HasToMatch && c;
 }
 
-static int SetParam(cmd, s)
-Cmd_T	*cmd;
-char	*s;
-{
+static int SetParam(Cmd_T *cmd, char *s){
 	if(!*s && cmd->Type != CMDSTRINGTYPE) {
 		fprintf(stderr,
 			"WARNING: No value specified for parameter \"%s\"\n",
@@ -443,10 +437,7 @@ char	*s;
 	return 0;
 }
 
-static int SetEnum(cmd, s)
-Cmd_T	*cmd;
-char	*s;
-{
+static int SetEnum(Cmd_T *cmd, char *s){
 	Enum_T	*en;
 
 	for(en=(Enum_T *)cmd->p; en->Name; en++) {
@@ -458,10 +449,7 @@ char	*s;
 	return EnumError(cmd, s);
 }
 
-static int SetSubrange(cmd, s)
-Cmd_T	*cmd;
-char	*s;
-{
+static int SetSubrange(Cmd_T *cmd, char *s){
 	int	n;
 
 	if(sscanf(s, "%d", &n)!=1) {
@@ -477,10 +465,7 @@ char	*s;
 	return 0;
 }
 
-static int SetGte(cmd, s)
-Cmd_T	*cmd;
-char	*s;
-{
+static int SetGte(Cmd_T *cmd, char *s){
 	int	n;
 
 	if(sscanf(s, "%d", &n)!=1) {
@@ -496,18 +481,12 @@ char	*s;
 	return 0;
 }
 
-static int SetStrArray(cmd, s)
-Cmd_T	*cmd;
-char	*s;
-{
+static int SetStrArray(Cmd_T *cmd, char *s){
 	*(char***)cmd->Val = str2array(s, (char*)cmd->p);
 	return 0;
 }
 
-static int SetLte(cmd, s)
-Cmd_T	*cmd;
-char	*s;
-{
+static int SetLte(Cmd_T *cmd, char *s){
 	int	n;
 
 	if(sscanf(s, "%d", &n)!=1) {
@@ -523,10 +502,7 @@ char	*s;
 	return 0;
 }
 
-static int EnumError(cmd, s)
-Cmd_T	*cmd;
-char	*s;
-{
+static int EnumError(Cmd_T *cmd, char *s){
 	Enum_T	*en;
 
 	fprintf(stderr,
@@ -541,10 +517,7 @@ char	*s;
 	exit(1);
 }
 
-static int GteError(cmd, n)
-Cmd_T	*cmd;
-int	n;
-{
+static int GteError(Cmd_T *cmd, int n){
 	fprintf(stderr,
 		"Value %d out of range for parameter \"%s\"\n", n, cmd->Name);
 	fprintf(stderr, "Valid values must be greater than or equal to  %d\n",
@@ -552,10 +525,7 @@ int	n;
 	exit(1);
 }
 
-static int LteError(cmd, n)
-Cmd_T	*cmd;
-int	n;
-{
+static int LteError(Cmd_T *cmd, int n){
 	fprintf(stderr,
 		"Value %d out of range for parameter \"%s\"\n", n, cmd->Name);
 	fprintf(stderr, "Valid values must be less than or equal to  %d\n",
@@ -563,10 +533,7 @@ int	n;
 	exit(1);
 }
 
-static int SubrangeError(cmd, n)
-Cmd_T	*cmd;
-int	n;
-{
+static int SubrangeError(Cmd_T *cmd, int n){
 	fprintf(stderr,
 		"Value %d out of range for parameter \"%s\"\n", n, cmd->Name);
 	fprintf(stderr, "Valid values range from %d to %d\n",
@@ -574,11 +541,7 @@ int	n;
 	exit(1);
 }
 
-static int PrintEnum(cmd, ValFlag, fp)
-Cmd_T	*cmd;
-int	ValFlag;
-FILE	*fp;
-{
+static int PrintEnum(Cmd_T *cmd, int ValFlag, FILE *fp){
 	Enum_T	*en;
 
 	fprintf(fp, "%s", cmd->Name);
@@ -593,11 +556,7 @@ FILE	*fp;
 	return 0;
 }
 
-static int PrintStrArray(cmd, ValFlag, fp)
-Cmd_T	*cmd;
-int	ValFlag;
-FILE	*fp;
-{
+static int PrintStrArray(Cmd_T *cmd, int ValFlag, FILE *fp){
 	char	*indent,
 		**s = *(char***)cmd->Val;
 	int	l = 4+strlen(cmd->Name);
@@ -617,10 +576,7 @@ FILE	*fp;
 	return 0;
 }
 
-static char **str2array(s, sep)
-char	*s,
-	*sep;
-{
+static char **str2array(char *s, char *sep){
 	char	*p,
 		**a;
 	int	n = 0,

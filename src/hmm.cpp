@@ -416,11 +416,11 @@ HMMNetwork *hmm::makeHMMNetwork(const Vector<WordIndex>& es,const Vector<WordInd
                 net->e[j](i1,i2)	    = al[i2real];
                 
                 if( empty_i2 )
-                    if(i1real!=i2real) {
+                    {if(i1real!=i2real) {
                         net->e[j](i1,i2)=0;
                     } else{   
                     net->e[j](i1,i2)=doInit?al[0]:(probs.getProbabilityForEmpty()); // make first HMM iteration like IBM-1
-                    }
+                    }}
             }
             normalize_if_possible(&net->e[j](i1,0),&net->e[j](i1,0)+I);
         }

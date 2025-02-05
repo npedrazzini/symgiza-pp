@@ -126,26 +126,26 @@ LogProb transpair_model4::prob_of_target_and_alignment_given_source(const alignm
     {
       total *= prob_of_target_and_alignment_given_source_1(al,verb);
     }
-  if( distortionType&2 )
-    {
-      for(WordIndex j=1;j<=m;j++)
-	if( al(j) )
-	  if( al.get_head(al(j))==j)
-	    {
-	      int ep=al.prev_cept(al(j));
-	      float x2=probFirst[ep](j,al.get_center(ep));
-	      massert(x2<=1.0);
-	      total*=x2;
-	      if( verb) cerr << "IBM-4: d=1 of " << j << ": " << x2  << " -> " << total << endl;
-	    }
-	  else
-	    {
-	      float x2=probSecond(j,al.prev_in_cept(j));
-	      massert(x2<=1.0);
-	      total*=x2;
-	      if( verb) cerr << "IBM-4: d>1 of " << j << ": " << x2  << " -> " << total << endl;
-	    }
-    }
+  if( distortionType&2 ){
+    for(WordIndex j=1;j<=m;j++)
+      if( al(j) ){
+        if( al.get_head(al(j))==j)
+          {
+            int ep=al.prev_cept(al(j));
+            float x2=probFirst[ep](j,al.get_center(ep));
+            massert(x2<=1.0);
+            total*=x2;
+            if( verb) cerr << "IBM-4: d=1 of " << j << ": " << x2  << " -> " << total << endl;
+          }
+        else
+          {
+            float x2=probSecond(j,al.prev_in_cept(j));
+            massert(x2<=1.0);
+            total*=x2;
+            if( verb) cerr << "IBM-4: d>1 of " << j << ": " << x2  << " -> " << total << endl;
+          }
+      }
+  }
   return total?total:almostZero;
 }
 
@@ -160,18 +160,19 @@ void transpair_model4::computeScores(const alignment&al,vector<double>&d)const
   for (WordIndex j = 1 ; j <= m ; j++)
     total3*= get_t(al(j), j) ;
   for(WordIndex j=1;j<=m;j++)
-    if( al(j) )
+    if( al(j) ){
       if( al.get_head(al(j))==j)
-	{
-	  int ep=al.prev_cept(al(j));
-	  float x2=probFirst[ep](j,al.get_center(ep));
-	  total4*=x2;
-	}
+        {
+          int ep=al.prev_cept(al(j));
+          float x2=probFirst[ep](j,al.get_center(ep));
+          total4*=x2;
+        }
       else
-	{
-	  float x2=probSecond(j,al.prev_in_cept(j));
-	  total4*=x2;
-	}
+        {
+          float x2=probSecond(j,al.prev_in_cept(j));
+          total4*=x2;
+        }
+      }
   d.push_back(total1);//9
   d.push_back(total2);//10
   d.push_back(total3);//11

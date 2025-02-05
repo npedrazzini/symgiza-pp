@@ -522,6 +522,9 @@ int model3::viterbi(int noIterationsModel3, int noIterationsModel4,
 		
 #ifdef TRICKY_IBM3_TRAINING
 
+#ifdef TRAIN_ARGS
+#undef TRAIN_ARGS
+#endif
 #define TRAIN_ARGS perp,      trainViterbiPerp, sHandler1,    dump_files, alignfile.c_str(),     true,  modelName,final
 #define TEST_ARGS  *testPerp, *testViterbiPerp, *testHandler, dump_files, test_alignfile.c_str(),false, modelName,final
 		switch (toModel) {
@@ -882,7 +885,9 @@ int model3::viterbi_hto3() {
 	p0_count = p1_count = 0;
 
 #ifdef TRICKY_IBM3_TRAINING
-
+#ifdef TRAIN_ARGS
+#undef TRAIN_ARGS
+#endif
 #define TRAIN_ARGS perp,      trainViterbiPerp, sHandler1,    true, alignfile.c_str(),     true,  modelName,final
 #define TEST_ARGS  *testPerp, *testViterbiPerp, *testHandler, dump_files, test_alignfile.c_str(),false, modelName,final
 	viterbi_loop_with_tricks<transpair_modelhmm, const hmm>(TRAIN_ARGS,h,(void*)0);
@@ -966,7 +971,9 @@ int model3::viterbi_3to3() {
 	p0_count = p1_count = 0;
 
 #ifdef TRICKY_IBM3_TRAINING
-
+#ifdef TRAIN_ARGS
+#undef TRAIN_ARGS
+#endif
 #define TRAIN_ARGS perp,      trainViterbiPerp, sHandler1,    true, alignfile.c_str(),     true,  modelName,final
 #define TEST_ARGS  *testPerp, *testViterbiPerp, *testHandler, dump_files, test_alignfile.c_str(),false, modelName,final
 	viterbi_loop_with_tricks<transpair_model3>( TRAIN_ARGS, (void*)0,(void*)0);
@@ -1059,7 +1066,9 @@ d4model* model3::viterbi_3to4() {
 	p0_count = p1_count = 0;
 
 #ifdef TRICKY_IBM3_TRAINING
-
+#ifdef TRAIN_ARGS
+#undef TRAIN_ARGS
+#endif
 #define TRAIN_ARGS perp,      trainViterbiPerp, sHandler1,    true, alignfile.c_str(),     true,  modelName,final
 #define TEST_ARGS  *testPerp, *testViterbiPerp, *testHandler, dump_files, test_alignfile.c_str(),false, modelName,final
 	viterbi_loop_with_tricks<transpair_model3, void, d4model>(TRAIN_ARGS, (void*)0,&d4m);
@@ -1143,7 +1152,9 @@ int model3::viterbi_4to4(d4model& d4m) {
 	p0_count = p1_count = 0;
 
 #ifdef TRICKY_IBM3_TRAINING
-
+#ifdef TRAIN_ARGS
+#undef TRAIN_ARGS
+#endif
 #define TRAIN_ARGS perp,      trainViterbiPerp, sHandler1,    true, alignfile.c_str(),     true,  modelName,final
 #define TEST_ARGS  *testPerp, *testViterbiPerp, *testHandler, dump_files, test_alignfile.c_str(),false, modelName,final
 

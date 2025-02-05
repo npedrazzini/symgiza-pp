@@ -38,7 +38,7 @@ class MYOptimization: public IterOptimization {
       virtual short accept(double delta); 
      
 
-      virtual void  abkuehlen();
+      virtual void  abkuehlen(void);
      
 
       virtual short end();
@@ -54,7 +54,7 @@ class MYOptimization: public IterOptimization {
 	int acceptFlags[NUMBER_OF_ACCEPTIONS],acceptFlagsNumber;
 	int acceptions,total;
 
-	void makeGraphOutput();
+	void makeGraphOutput(void);
 	
 };
 

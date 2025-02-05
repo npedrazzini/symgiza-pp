@@ -1,28 +1,21 @@
 dnl Process this file with autoconf to produce a configure script.
 dnl Created by Anjuta application wizard.
 
-AC_INIT(mgiza, 1.0)
+AC_INIT([mgiza],[1.0])
 
-AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
-AM_CONFIG_HEADER(config.h)
+AC_CONFIG_MACRO_DIRS([m4])
+AM_INIT_AUTOMAKE
+AC_CONFIG_HEADERS([config.h])
 AM_MAINTAINER_MODE
 
-AC_ISC_POSIX
+AC_SEARCH_LIBS([strerror],[cposix])
 AC_PROG_CXX
-AM_PROG_CC_STDC
-AC_HEADER_STDC
 
+LT_INIT
 
-
-AC_PROG_RANLIB
-AM_PROG_LIBTOOL
-AC_PROG_LIBTOOL
-
-
-
-
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 src/Makefile
 src/mkcls/Makefile
 ])
+AC_OUTPUT

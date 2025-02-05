@@ -170,10 +170,10 @@ private:
   static int   *addtbl;
   static int   *subtbl;
 
-  static int Initialize();
+  static int Initialize(void);
 
 public:
-  static void FreeTables();
+  static void FreeTables(void);
   // constants for initializing LogProbs to 0 or 1
   static const LogProb zero;
   static const LogProb one;

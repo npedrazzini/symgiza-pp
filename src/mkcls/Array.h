@@ -46,7 +46,7 @@ template<class T> class Array
 
   void copy(T *a,const T *b,int n);
   void copy(T *a,T *b,int n);
-  void _expand();
+  void _expand(void);
 		
  public:
   Array() 

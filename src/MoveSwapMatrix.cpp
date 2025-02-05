@@ -38,11 +38,12 @@ void MoveSwapMatrix<TRANSPAIR>::updateJ(WordIndex j, bool useChanged,double this
 {
   massert( lazyEvaluation==0 );
   for(WordIndex i=0;i<=l;i++)
-    if( (useChanged==0||changed[i]!=changedCounter) )
-      if( get_al(j)!=i ) 
-	_cmove(i, j)=ef.scoreOfMove((*this), i, j,thisValue);
-      else
-	_cmove(i, j)=1.0;
+    if( (useChanged==0||changed[i]!=changedCounter) ){
+		if( get_al(j)!=i ) 
+			_cmove(i, j)=ef.scoreOfMove((*this), i, j,thisValue);
+      	else
+			_cmove(i, j)=1.0;
+		}
   for(WordIndex j2=j+1;j2<=m;j2++)
     if( get_al(j)!=get_al(j2) )
       _cswap(j, j2)=ef.scoreOfSwap((*this), j, j2,thisValue);

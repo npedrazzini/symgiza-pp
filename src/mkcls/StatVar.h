@@ -122,10 +122,10 @@ class StatVar : public StatV
       StatV::addValue(a);
     }
   
-  double getSigmaSmaller();
+  double getSigmaSmaller(void);
   
 
-  double getSigmaBigger();
+  double getSigmaBigger(void);
   
 
 };

@@ -61,7 +61,7 @@ private:
 	
 	void copy(T *a, const T *b, int n);
 	void copy(T *a, T *b, int n);
-	void _expand();		
+	void _expand(void);		
 public:
   Vector() 
     : p(0), realSize(0), maxWritten(-1)

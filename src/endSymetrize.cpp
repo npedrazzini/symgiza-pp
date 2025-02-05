@@ -113,7 +113,8 @@ while (*str1 != '\0') {
 			}
 			inta.push_back(part);
 			part.clear();
-			*str1--;
+			str1--;
+			// *str1--;
 			while(*--str1!=' ') {}
 			string integer="";
 			while(*++str1!=' ') {
@@ -160,7 +161,8 @@ const char *str2 = s2.c_str();
 					}
 					intb.push_back(part);
 					part.clear();
-					*str2--;
+					str2--;
+					// *str2--;
 					while(*--str2!=' ') {}
 					string integer="";
 					while(*++str2!=' ') {
@@ -266,6 +268,7 @@ const char *str2 = s2.c_str();
 inp.close();
 inpInv.close();
 out.close();
+return 0;
 }
 
 /*int main(int argc, char** argv){

@@ -86,9 +86,9 @@ class KategProblemKBC
   FreqType n2(int w) { return _n2[w];};
   
   
-  double bigramVerfSum();
-  double unigramVerfSum1();
-  double unigramVerfSum2();
+  double bigramVerfSum(void);
+  double unigramVerfSum1(void);
+  double unigramVerfSum2(void);
 
   double nverf(int w1,int w2) { return _nverf[w1][w2]; }
   
@@ -102,7 +102,7 @@ class KategProblemKBC
   void setN(int w1,int w2, FreqType n);  
   
   
-  double myCriterionTerm();
+  double myCriterionTerm(void);
 
 };
 

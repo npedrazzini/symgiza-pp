@@ -2,7 +2,6 @@ Makefile
 autom4te.cache/
 config.h.in~
 .deps
-mkcls
 symgiza
 d4norm
 hmmnorm
